@@ -227,3 +227,11 @@ func mapYumPackageVersion(pkg, kubernetesVersion string) string {
 		return ""
 	}
 }
+
+func (y *YumInstaller) InstallKeepalivedPackage(out io.Writer) error {
+	if err := YumInstall(out, []string{"keepalived", "curl"}); err != nil {
+		return errors.Wrap(err, "unable to install keepalived")
+	}
+
+	return nil
+}
